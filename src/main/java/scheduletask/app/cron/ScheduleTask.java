@@ -17,8 +17,9 @@ public class ScheduleTask {
 
     @Scheduled(cron = "0 0/30 * * * ?")
     public void sheduledTask() {
-        log.info("Execute cron process at " + LocalDateTime.now());
+        log.info("Execute cron process start at " + LocalDateTime.now());
         taskService.notifyTasksByEmail();
+        log.info("Execute cron process end at " + LocalDateTime.now());
     }
 
 }
