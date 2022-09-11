@@ -20,6 +20,8 @@ public class TaskServiceImpl implements TaskService {
     private static final Long HALF_HOUR = 30L;    // 30 minutes equals to half hour
     @Autowired
     private TaskRepository taskRepository;
+    @Autowired
+    private EmailService emailService;
     @Value(value = "${tasks.emails}")
     private String emails;
 
@@ -50,13 +52,13 @@ public class TaskServiceImpl implements TaskService {
 
                         if (validEventDate(task)) {
                             if (validEventTime(task)) {
-                                // Notify to user by eail
-
-
+                                // Notify to user by email
+                                emailService.sendMail(task);
                                 // Update and persist the object
                                 task.setRevised(true);
                                 task.setActive(false);
                                 taskRepository.save(task);
+                                log.info("Task updating successfully");
                             }
                         }
 
@@ -64,11 +66,11 @@ public class TaskServiceImpl implements TaskService {
                 }
 
             } catch (Exception e) {
+                log.error("ERROR: an error occurred");
+                log.error("ERROR: " + e.getMessage());
                 e.printStackTrace();
             }
-
         }
-        System.out.println(emails);
     }
 
     private boolean validEventDate(Task task) {

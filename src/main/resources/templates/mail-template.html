@@ -1,0 +1,41 @@
+<!doctype html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport"
+              content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+        <meta http-equiv="X-UA-Compatible" content="ie=edge">
+        <title>Recordatorio</title>
+    </head>
+    <body>
+
+        <h1>RECORDATORIO</h1>
+
+        <p>
+            En el dia de la fecha
+            aproximadamente dentro de 30 minutos
+            tienes el siguiente evento
+        </p>
+
+        <div>
+            Dia del evento:
+            <b th:text="${task.eventDate}"></b>
+        </div>
+
+        <div>
+            Hora del evento:
+            <b th:text="${task.eventTime}"></b>
+        </div>
+
+        <div>
+            Descripcion
+            <b th:text="${task.description}"></b>
+        </div>
+
+        <div>
+            <h4>Suerte!</h4>
+        </div>
+
+    </body>
+</html>
