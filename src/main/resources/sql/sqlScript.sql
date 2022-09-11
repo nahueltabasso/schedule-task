@@ -5,7 +5,7 @@ CREATE DATABASE `tasks_local`;
 CREATE TABLE `tasks_local`.`tasks` (
     `id` BIGINT NOT NULL AUTO_INCREMENT,
     `description` VARCHAR(100) NOT NULL,
-    `eventdate` TIMESTAMP NOT NULL,
+    `eventdate` DATE NOT NULL,
     `eventtime` TIME NOT NULL,
     `username` VARCHAR(100) NOT NULL,
     `revised` BOOLEAN NOT NULL,
@@ -20,17 +20,17 @@ CREATE TABLE `tasks_local`.`tasks` (
 
 INSERT INTO `tasks_local`.`tasks`(id, description, eventdate, eventtime, username, revised, active, creationtimestamp, creationuser, modificationtimestamp, modificationuser)
 VALUES
-    (DEFAULT, 'Tasks Prueba 1', CURRENT_TIMESTAMP(), '22:00:00', 'usuariotest@gmail.com', false, true, CURRENT_TIMESTAMP(), 'usuariotest@gmail.com', CURRENT_TIMESTAMP(), 'admin');
+    (DEFAULT, 'Tasks Prueba 1', CURRENT_DATE(), '22:00:00', 'usuariotest@gmail.com', false, true, CURRENT_TIMESTAMP(), 'usuariotest@gmail.com', CURRENT_TIMESTAMP(), 'admin');
 
 INSERT INTO `tasks_local`.`tasks`(id, description, eventdate, eventtime, username, revised, active, creationtimestamp, creationuser, modificationtimestamp, modificationuser)
 VALUES
-    (DEFAULT, 'Tasks Prueba 2', CURRENT_TIMESTAMP(), '22:00:00', 'usuariotest@gmail.com', true, true, CURRENT_TIMESTAMP(), 'usuariotest@gmail.com', CURRENT_TIMESTAMP(), 'admin');
+    (DEFAULT, 'Tasks Prueba 2', CURRENT_DATE(), '22:00:00', 'usuariotest@gmail.com', true, true, CURRENT_TIMESTAMP(), 'usuariotest@gmail.com', CURRENT_TIMESTAMP(), 'admin');
 
 INSERT INTO `tasks_local`.`tasks`(id, description, eventdate, eventtime, username, revised, active, creationtimestamp, creationuser, modificationtimestamp, modificationuser)
 VALUES
-    (DEFAULT, 'Tasks Prueba 3', CURRENT_TIMESTAMP(), '22:00:00', 'usuariotest@gmail.com', false, true, CURRENT_TIMESTAMP(), 'usuariotest@gmail.com', CURRENT_TIMESTAMP(), 'admin');
+    (DEFAULT, 'Tasks Prueba 3', CURRENT_DATE(), '22:00:00', 'usuariotest@gmail.com', false, true, CURRENT_TIMESTAMP(), 'usuariotest@gmail.com', CURRENT_TIMESTAMP(), 'admin');
 
 INSERT INTO `tasks_local`.`tasks`(id, description, eventdate, eventtime, username, revised, active, creationtimestamp, creationuser, modificationtimestamp, modificationuser)
 VALUES
-    (DEFAULT, 'Tasks Prueba 4', CURRENT_TIMESTAMP(), '22:00:00', 'usuario@gmail.com', false, true, CURRENT_TIMESTAMP(), 'usuario@gmail.com', CURRENT_TIMESTAMP(), 'admin');
+    (DEFAULT, 'Tasks Prueba 4', CURRENT_DATE(), '22:00:00', 'usuario@gmail.com', false, true, CURRENT_TIMESTAMP(), 'usuario@gmail.com', CURRENT_TIMESTAMP(), 'admin');
 

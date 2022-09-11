@@ -17,7 +17,7 @@ public class ScheduleTask {
 
     @Scheduled(cron = "*/10 * * * * *")
     public void sheduledTask() {
-        List<Task> tasks = taskService.findAll();
+        taskService.notifyTasksByEmail();
         System.out.println(new Date());
     }
 
