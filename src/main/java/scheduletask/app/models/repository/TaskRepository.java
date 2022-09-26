@@ -15,6 +15,7 @@ public interface TaskRepository extends CrudRepository<Task, Long> {
                 "and revised = ?1 " +
                 "and eventdate = ?3 " +
                 "and username = ?4 ", nativeQuery = true)
-    List<Task> findByRevisedIsFalseAndByActiveIsTrueAndByEventDateAndByUsername(Boolean revised, Boolean active,
-                                                                                LocalDate eventDate, String username);
+    public List<Task> findByRevisedIsFalseAndByActiveIsTrueAndByEventDateAndByUsername(Boolean revised, Boolean active, LocalDate eventDate, String username);
+
+    List<Task> findByUsernameLikeAndActiveTrueAndRevisedFalseOrderByEventDateAsc(String username);
 }

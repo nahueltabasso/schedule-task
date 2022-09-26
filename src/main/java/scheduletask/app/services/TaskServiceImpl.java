@@ -34,7 +34,7 @@ public class TaskServiceImpl implements TaskService {
     @Override
     public void notifyTasksByEmail() {
         String funcName = this.getClass().getName() + ".notifyTasksByEmail()";
-        log.info("Execute: {}", funcName );
+        log.info("Execute: {}", funcName);
 
         List<String> emailsList = List.of(emails.split(";"));
 
@@ -71,6 +71,47 @@ public class TaskServiceImpl implements TaskService {
                 e.printStackTrace();
             }
         }
+    }
+
+    @Override
+    public List<Task> getTasksByUsername(String username) {
+        String funcName = this.getClass().getName() + ".getTasksByUsername()";
+        log.info("Execute: {}", funcName);
+        List<Task> taskList = new ArrayList<>();
+        taskList = taskRepository.findByUsernameLikeAndActiveTrueAndRevisedFalseOrderByEventDateAsc(username);
+        return taskList;
+    }
+
+    @Override
+    public void cancelTask(Long id) {
+        String funcName = this.getClass().getName() + ".cancelTask()";
+        log.info("Execute: {}", funcName);
+        try {
+            Task task = taskRepository.findById(id).get();
+            if (task == null) {
+                throw new Exception("Not exist task by id " + id);
+            }
+            task.setActive(false);
+            taskRepository.save(task);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    @Override
+    public void deleteTask(Long id) {
+        String funcName = this.getClass().getName() + ".deleteTask()";
+        log.info("Execute: {}", funcName);
+        try {
+            Task task = taskRepository.findById(id).get();
+            if (task == null) {
+                throw new Exception("Not exist task by id " + id);
+            }
+            taskRepository.delete(task);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
     }
 
     private boolean validEventDate(Task task) {
