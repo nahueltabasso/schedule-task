@@ -8,6 +8,7 @@ import scheduletask.app.models.entity.Task;
 import scheduletask.app.models.repository.TaskRepository;
 
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.time.LocalTime;
 import java.time.temporal.ChronoUnit;
 import java.util.ArrayList;
@@ -112,6 +113,41 @@ public class TaskServiceImpl implements TaskService {
             e.printStackTrace();
         }
 
+    }
+
+    @Override
+    public Task save(Task task) throws Exception {
+        String funcName = this.getClass().getName() + ".save()";
+        log.info("Execute: {}", funcName);
+
+        // Set the audit properties
+        task.setCreationUser(task.getUsername());
+        task.setCreationTimeStamp(LocalDateTime.now());
+        task.setModificationUser(task.getUsername());
+        task.setModificationTimeStamp(LocalDateTime.now());
+
+        // Set the boolean values
+        task.setActive(Boolean.TRUE);
+        task.setRevised(Boolean.FALSE);
+
+        // Valid the event date greater or equal than current date
+        LocalDate currentDate = LocalDate.now();
+        LocalDate eventDate = LocalDate.from(task.getEventDate());
+        if (eventDate.isBefore(currentDate)) {
+            throw new Exception("Event Date not valid. Event Date can not be before current date!");
+        }
+
+        // Valid the event time
+        LocalTime currentTime = LocalTime.now();
+        LocalTime eventTime = task.getEventTime();
+        Long difference = ChronoUnit.MINUTES.between(currentTime, eventTime);
+        if (HALF_HOUR >= difference && eventDate.equals(currentDate)) {
+            throw new Exception("Event Time not valid. Event time can be after 30 minutes from now");
+        }
+
+        task = taskRepository.save(task);
+
+        return task;
     }
 
     private boolean validEventDate(Task task) {

@@ -32,10 +32,10 @@
                     <form th:action="@{/list-tasks}" method="post">
                         <div class="input-group-prepend px-4 py-2">
                             <label class="input-group-text">Username:</label>
-                            <input type="text" class="form-control" th:value="${username}" name="username">
+                            <input type="text" class="form-control" th:value="${username}" name="username" id="username">
                         </div>
 
-                        <input class="btn btn-primary" type="submit" th:value="Login" />
+                        <input class="btn btn-primary" type="submit" th:value="Login" id="submitButton" />
                     </form>
 
                 </div>

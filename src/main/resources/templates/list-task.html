@@ -35,7 +35,9 @@
                     Don't exists actives tasks for this user
                 </div>
 
-                <table class="table table-striped" th:if="${taskList.size()} > 0">
+                <a class="btn btn-success btn-xs" th:href="@{/task-add}">Create Task</a>
+
+                <table class="table table-striped my-2" th:if="${taskList.size()} > 0">
 
                     <thead>
                     <tr>
@@ -51,7 +53,7 @@
                     <tbody>
                     <tr th:each="task: ${taskList}">
                         <td th:text="${task.description}"></td>
-                        <td th:text="${task.eventDate}"></td>
+                        <td th:text="${#temporals.format(task.eventDate, 'dd/MM/yyyy')}"></td>
                         <td th:text="${task.eventTime}"></td>
                         <td th:text="${task.active}"></td>
                         <td><a class="btn btn-primary btn-xs"
