@@ -4,8 +4,13 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
+import javax.validation.constraints.Email;
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
 
@@ -22,12 +27,18 @@ public class Task {
     @Column(name = "id")
     private Long id;
     @Column(name = "description")
+    @NotNull
+    @NotEmpty
     private String description;
     @Column(name = "eventdate")
-    private LocalDateTime eventDate;
+    @NotNull
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
+    private LocalDate eventDate;
     @Column(name = "eventtime")
+    @NotNull
     private LocalTime eventTime;
     @Column(name = "username")
+    @Email
     private String username;
     @Column(name = "revised")
     private Boolean revised;
