@@ -150,6 +150,14 @@ public class TaskServiceImpl implements TaskService {
         return task;
     }
 
+    @Override
+    public void deleteOldTasks() {
+        String funcName = this.getClass().getName() + ".deleteOldTasks()";
+        log.info("Execute: {}", funcName);
+        List<Task> tasksList = taskRepository.findByEventDateBefore(LocalDate.now());
+        taskRepository.deleteAll(tasksList);
+    }
+
     private boolean validEventDate(Task task) {
         String funcName = this.getClass().getName() + ".validEventDate()";
         log.info("Execute: {}", funcName );

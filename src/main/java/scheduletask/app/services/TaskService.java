@@ -12,4 +12,5 @@ public interface TaskService {
     public void cancelTask(Long id);
     public void deleteTask(Long id);
     public Task save(Task task) throws Exception;
+    public void deleteOldTasks();
 }

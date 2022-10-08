@@ -21,7 +21,7 @@ public class TaskController {
     private TaskService taskService;
     private String username;
 
-    @RequestMapping("/login")
+    @RequestMapping(value={"", "/", "/login"})
     public String showUserInput(Model model) {
         String funcName = this.getClass().getName() + ".showUserInput()";
         log.info("Execute: {}", funcName);
@@ -63,6 +63,7 @@ public class TaskController {
         }
         return "redirect:/list-tasks?username=" + this.username;
     }
+
 
     @RequestMapping(value = {"/task-add"}, method = RequestMethod.GET)
     public String showTaskForm(Model model) {

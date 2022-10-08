@@ -18,4 +18,8 @@ public interface TaskRepository extends CrudRepository<Task, Long> {
     public List<Task> findByRevisedIsFalseAndByActiveIsTrueAndByEventDateAndByUsername(Boolean revised, Boolean active, LocalDate eventDate, String username);
 
     List<Task> findByUsernameLikeAndActiveTrueAndRevisedFalseOrderByEventDateAsc(String username);
+
+    List<Task> findByEventDateBefore(LocalDate currentDate);
+
+
 }

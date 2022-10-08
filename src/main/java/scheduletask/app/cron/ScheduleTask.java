@@ -17,9 +17,17 @@ public class ScheduleTask {
 
     @Scheduled(cron = "0 0/30 * * * ?")
     public void sheduledTask() {
-        log.info("Execute cron process start at " + LocalDateTime.now());
+        log.info("Execute sheduledTask cron process start at " + LocalDateTime.now());
         taskService.notifyTasksByEmail();
-        log.info("Execute cron process end at " + LocalDateTime.now());
+        log.info("Execute sheduledTask cron process end at " + LocalDateTime.now());
     }
+
+    @Scheduled(cron = "0 3 * * * ?")
+    public void debugDb() {
+        log.info("Execute debuDb cron process start at " + LocalDateTime.now());
+        taskService.deleteOldTasks();
+        log.info("Execute debuDb cron process end at " + LocalDateTime.now());
+    }
+
 
 }
